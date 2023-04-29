@@ -22,6 +22,11 @@ public class JpaMain {
             // 영속성
             entityManager.persist(member);
 
+            Member findMember = entityManager.find(Member.class, 101L);
+
+            System.out.println("findMember.id = " + findMember.getId());
+            System.out.println("findMember.name = " + findMember.getName());
+
 
             tx.commit();
         } catch (Exception e) {
