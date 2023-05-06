@@ -14,18 +14,11 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 비영속
-            Member member =new Member();
-            member.setId(100L);
-            member.setName("Hello");
+            // 영속
+            Member findMember1 = entityManager.find(Member.class, 101L);
+            Member findMember2 = entityManager.find(Member.class, 101L);
 
-            // 영속성
-            entityManager.persist(member);
-
-            Member findMember = entityManager.find(Member.class, 101L);
-
-            System.out.println("findMember.id = " + findMember.getId());
-            System.out.println("findMember.name = " + findMember.getName());
+            System.out.println("result = " + (findMember1 == findMember2));
 
 
             tx.commit();
