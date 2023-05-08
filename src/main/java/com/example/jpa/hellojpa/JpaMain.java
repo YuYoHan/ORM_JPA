@@ -15,8 +15,9 @@ public class JpaMain {
 
         try {
             // 영속
-            Member member = entityManager.find(Member.class, 150L);
-            member.setName("ZZZ");
+            Member member = new Member(200L, "memberA");
+            entityManager.persist(member);
+            entityManager.flush();
 
             tx.commit();
         } catch (Exception e) {
