@@ -15,10 +15,14 @@ public class JpaMain {
 
         try {
             // 영속
-            Member member = new Member(200L, "memberA");
-            entityManager.persist(member);
-            entityManager.flush();
+            Member member = entityManager.find(Member.class, 150L);
+            member.setName("ZZZ");
 
+            // 준영속
+            // 영속성 컨텍스트에서 관리하지 말라고 끊어낸것
+            entityManager.detach(member);
+
+            // 아무일도 일어나지 않는데 jpa에서 관리하지 않기 때문이다.
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
