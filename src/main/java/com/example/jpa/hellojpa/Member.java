@@ -1,10 +1,17 @@
 package com.example.jpa.hellojpa;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "member_ex")
 @Table(name = "MBR")
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id
@@ -32,6 +39,4 @@ public class Member {
     @Lob
     private String description;
 
-    public Member() {
-    }
 }

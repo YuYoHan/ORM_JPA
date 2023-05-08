@@ -14,6 +14,13 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Member member = new Member();
+            member.setId(1L);
+            member.setUserName("A");
+            member.setRoleType(RoleType.USER);
+
+            entityManager.persist(member);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
