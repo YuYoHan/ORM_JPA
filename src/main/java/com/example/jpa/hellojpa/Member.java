@@ -2,13 +2,16 @@ package com.example.jpa.hellojpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity(name = "member_ex")
+@Table(name = "MBR")
 public class Member {
 
     @Id
     private Long id;
     private String name;
+    private int age;
 
     public Member() {
     }
