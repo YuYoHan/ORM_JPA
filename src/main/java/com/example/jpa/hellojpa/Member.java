@@ -1,5 +1,6 @@
 package com.example.jpa.hellojpa;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,6 +11,7 @@ public class Member {
 
     @Id
     private Long id;
+    @Column(name = "name", unique = true)
     private String name;
     private int age;
 
