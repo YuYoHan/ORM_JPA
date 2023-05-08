@@ -1,9 +1,7 @@
 package com.example.jpa.hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "member_ex")
 @Table(name = "MBR")
@@ -11,31 +9,29 @@ public class Member {
 
     @Id
     private Long id;
-    @Column(name = "name", unique = true)
-    private String name;
-    private int age;
+
+    @Column(name = "name")
+    private String userName;
+
+    private Integer age;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
+    // 날짜 타입(java.util.Date, java.util.Calendar)을 매핑할 때 사용
+    // LocalDate, LocalDateTime을 사용할 때는 생략 가능
+    // TemporalType.TIMESTAMP : 날짜와 시간, 데이터베이스 timestamp 타입과 매핑
+    // 예) 2023-05-08 11:11:11
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
+
+    // 데이터베이스 BLOB, CLOB 타입과 매핑
+    // DB에 큰 데이터를 넣고 싶으면 @Lob 사용
+    @Lob
+    private String description;
 
     public Member() {
-    }
-
-    public Member(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
