@@ -19,8 +19,6 @@ public class JpaMain {
             member.setUserName("A");
             member.setRoleType(RoleType.USER);
 
-            entityManager.persist(member);
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
