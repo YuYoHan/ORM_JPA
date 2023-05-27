@@ -16,13 +16,15 @@ import java.util.Date;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String userName;
 
-    private int age;
+    @Column(name = "team_id")
+    private Long teamId;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
