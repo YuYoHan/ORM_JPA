@@ -1,5 +1,6 @@
 package com.example.jpa.hellojpa;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -21,8 +22,16 @@ public class JpaMain {
 
             Member member =new Member();
             member.setUserName("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             entityManager.persist(member);
+
+            // 조회
+            Member findMember = entityManager.find(Member.class, member.getId());
+            Team findTeam = findMember.getTeam();
+
+            System.out.println("findTam : " + findTeam.getName());
+
+
 
             tx.commit();
         } catch (Exception e) {

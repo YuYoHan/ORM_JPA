@@ -25,9 +25,6 @@ public class JpaApplication {
         try {
 
             OrderEntity orderEntity = entityManager.find(OrderEntity.class, 1L);
-            Long memberId = orderEntity.getMemberId();
-
-            MemberEntity memberEntity = entityManager.find(MemberEntity.class, memberId);
 
             MemberEntity findMember = orderEntity.getMember();
 

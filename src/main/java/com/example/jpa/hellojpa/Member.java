@@ -23,8 +23,14 @@ public class Member {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(name = "team_id")
-    private Long teamId;
+//    @Column(name = "team_id")
+//    private Long teamId;
+
+    // member입장에서는 many고 team은 one이다.
+    // 하나의 팀에 여러명의 멤버가 들어갈 수 있기 때문
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
