@@ -1,11 +1,15 @@
 package com.example.jpa.hellojpa;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
+@Slf4j
 public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -25,12 +29,16 @@ public class JpaMain {
             member.setTeam(team);
             entityManager.persist(member);
 
-            // 조회
+            entityManager.flush();
+            entityManager.clear();
+
             Member findMember = entityManager.find(Member.class, member.getId());
-            Team findTeam = findMember.getTeam();
+            List<Member> members = findMember.getTeam().getMembers();
 
-            System.out.println("findTam : " + findTeam.getName());
-
+            for (Member m: members
+                 ) {
+                log.info("m = " + m.getUserName());
+            }
 
 
             tx.commit();
