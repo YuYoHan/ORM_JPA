@@ -25,7 +25,6 @@ public class JpaMain {
 
             Team team = new Team();
             team.setName("TeamA");
-            team.getMembers().add(member);
             entityManager.persist(team);
 
 

@@ -15,9 +15,8 @@ public class OrderEntity {
     @Column(name = "order_id")
     private Long id;
 
-//    @Column(name = "member_id")
-//    private Long memberId;
-
+    // 주문에 입장에서는 주문을 여러개 넣을 수 있으니
+    // @ManyToOne
     @ManyToOne
     @JoinColumn(name = "member_id")
     private MemberEntity member;
