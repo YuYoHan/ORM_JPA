@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,8 +23,16 @@ public class OrderEntity {
     @JoinColumn(name = "member_id")
     private MemberEntity member;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItemEntity> orderItems = new ArrayList<>();
+
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    public void addOrderItem(OrderItemEntity orderItemEntity) {
+        orderItems.add(orderItemEntity);
+        orderItemEntity.setOrder(this);
+    }
 }

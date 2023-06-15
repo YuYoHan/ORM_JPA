@@ -1,6 +1,8 @@
 package com.example.jpa.hellojpa;
 
 
+import com.example.jpa.domain.OrderEntity;
+import com.example.jpa.domain.OrderItemEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.EntityManager;
@@ -19,17 +21,8 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member =new Member();
-            member.setUserName("member1");
-            entityManager.persist(member);
-
-            Team team = new Team();
-            team.setName("TeamA");
-            entityManager.persist(team);
-
-
-            entityManager.flush();
-            entityManager.clear();
+            OrderEntity order = new OrderEntity();
+            order.addOrderItem(new OrderItemEntity());
 
             tx.commit();
         } catch (Exception e) {
