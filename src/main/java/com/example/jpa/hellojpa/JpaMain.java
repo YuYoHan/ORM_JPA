@@ -21,8 +21,18 @@ public class JpaMain {
         tx.begin();
 
         try {
+            // 단방향 개발
             OrderEntity order = new OrderEntity();
-            order.addOrderItem(new OrderItemEntity());
+            entityManager.persist(order);
+
+            OrderItemEntity orderItem = new OrderItemEntity();
+            orderItem.setOrder(order);
+
+            entityManager.persist(orderItem);
+
+            // 양방향 개발
+//            order.addOrderItem(new OrderItemEntity());
+
 
             tx.commit();
         } catch (Exception e) {
