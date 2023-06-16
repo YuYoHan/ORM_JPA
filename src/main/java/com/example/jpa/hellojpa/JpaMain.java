@@ -21,18 +21,16 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 단방향 개발
-            OrderEntity order = new OrderEntity();
-            entityManager.persist(order);
+            Member member = new Member();
+            member.setUserName("member1");
 
-            OrderItemEntity orderItem = new OrderItemEntity();
-            orderItem.setOrder(order);
+            entityManager.persist(member);
 
-            entityManager.persist(orderItem);
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
 
-            // 양방향 개발
-//            order.addOrderItem(new OrderItemEntity());
-
+            entityManager.persist(team);
 
             tx.commit();
         } catch (Exception e) {
