@@ -19,7 +19,7 @@ public class Team {
     private Long id;
     private String name;
 
-    // 양방향 매핑
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    @JoinColumn(name = "team_id")
     private List<Member> members = new ArrayList<>();
 }
