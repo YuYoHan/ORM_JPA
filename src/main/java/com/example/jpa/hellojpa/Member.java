@@ -23,4 +23,8 @@ public class Member {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
+    @OneToOne
+    @JoinColumn(name = "locker_id")
+    private Locker locker;
+
 }
