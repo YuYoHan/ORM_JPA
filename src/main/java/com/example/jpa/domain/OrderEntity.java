@@ -23,6 +23,10 @@ public class OrderEntity {
     @JoinColumn(name = "member_id")
     private MemberEntity member;
 
+    @OneToOne
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItemEntity> orderItems = new ArrayList<>();
 
