@@ -26,5 +26,4 @@ public class Member extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "locker_id")
     private Locker locker;
-
 }
