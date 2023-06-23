@@ -11,7 +11,9 @@ import java.util.List;
 @Table(name = "Item")
 @Getter
 @Setter
-public class ItemEntity {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
+public abstract class ItemEntity {
     @Id
     @GeneratedValue
     @Column(name = "item_id")

@@ -1,5 +1,6 @@
 package com.example.jpa;
 
+import com.example.jpa.domain.Book;
 import com.example.jpa.domain.MemberEntity;
 import com.example.jpa.domain.OrderEntity;
 import org.springframework.boot.SpringApplication;
@@ -23,10 +24,11 @@ public class JpaApplication {
         tx.begin();
 
         try {
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
 
-            OrderEntity orderEntity = entityManager.find(OrderEntity.class, 1L);
-
-            MemberEntity findMember = orderEntity.getMember();
+            entityManager.persist(book);
 
 
             tx.commit();
