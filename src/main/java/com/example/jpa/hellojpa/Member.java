@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(name = "member_seq_generator")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue

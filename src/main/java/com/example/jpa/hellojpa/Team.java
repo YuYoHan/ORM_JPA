@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Table(name = "Team")
-public class Team {
+public class Team extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "team_id")
     private Long id;
