@@ -22,14 +22,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUserName("user");
-            member.setCreateBy("kim");
-            member.setCreateDate(LocalDateTime.now());
-            entityManager.persist(member);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            entityManager.flush();
-            entityManager.clear();
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            entityManager.persist(parent);
 
             tx.commit();
         } catch (Exception e) {
@@ -37,7 +37,6 @@ public class JpaMain {
         } finally {
             entityManager.close();
         }
-
         emf.close();
     }
 }
