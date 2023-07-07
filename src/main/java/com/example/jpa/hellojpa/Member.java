@@ -3,6 +3,7 @@ package com.example.jpa.hellojpa;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity(name = "member_ex")
@@ -23,7 +24,11 @@ public class Member extends BaseEntity {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @OneToOne
-    @JoinColumn(name = "locker_id")
-    private Locker locker;
+    // 기간
+    @Embedded
+    private Period workPeriod;
+
+    // 주소
+    @Embedded
+    private Address homeAddress;
 }
