@@ -12,6 +12,7 @@ public class ValueMain {
         Address address2 = new Address("city", "street", "10000");
 
         System.out.println("address == address2 : " + (address == address2));
+        System.out.println("address equals address2 : " + (address.equals(address2)));
 
     }
 }
