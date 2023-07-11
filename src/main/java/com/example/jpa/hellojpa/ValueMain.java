@@ -4,16 +4,14 @@ public class ValueMain {
     public static void main(String[] args) {
 
         int a = 10;
-        int b = a;
+        int b = 10;
 
-        a = 20;
+        System.out.println("a == b : " + (a == b));
 
-        System.out.println("a = " + a); // 20
-        System.out.println("b = " + b); // 10 → 10인 이유 처음에 a 값을 복사하고 별개의 공간을 가지고 있기 때문에 20이 적용 안됨
+        Address address = new Address("city", "street", "10000");
+        Address address2 = new Address("city", "street", "10000");
 
-        Integer c = 10;
-        Integer d = c;
-        System.out.println("c = " + a);
-        System.out.println("d = " + b);
+        System.out.println("address == address2 : " + (address == address2));
+
     }
 }
