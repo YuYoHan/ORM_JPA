@@ -29,14 +29,10 @@ public class JpaMain {
             member.setHomeAddress(address);
             entityManager.persist(member);
 
-            Address copyAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+            // 불변에서 값을 바꾸러면 다시 만들어줘야 한다.
+            Address newAddress = new Address("NewCity", address.getStreet(), address.getZipcode());
+            member.setHomeAddress(newAddress);
 
-            Member member2 = new Member();
-            member2.setUserName("member2");
-            member2.setHomeAddress(copyAddress);
-            entityManager.persist(member2);
-
-            member.getHomeAddress().setCity("newCity");
 
             tx.commit();
         } catch (Exception e) {
