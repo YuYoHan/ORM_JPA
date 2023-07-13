@@ -36,9 +36,13 @@ public class Member extends BaseEntity {
     @CollectionTable(name = "favorite_food", joinColumns = @JoinColumn(name = "member_id"))
     @Column(name = "food_name")
     private Set<String> favoriteFoods = new HashSet<>();
-    @ElementCollection
-    @CollectionTable(name = "address", joinColumns = @JoinColumn(name = "member_id"))
-    private List<Address> addressHistory = new ArrayList<>();
+//    @ElementCollection
+//    @CollectionTable(name = "address", joinColumns = @JoinColumn(name = "member_id"))
+//    private List<Address> addressHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "member_id")
+    private List<AddressEntity> addressHistory = new ArrayList<>();
 
     @Embedded
     @AttributeOverrides({

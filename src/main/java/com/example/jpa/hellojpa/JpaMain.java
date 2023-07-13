@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 public class JpaMain {
@@ -22,17 +23,6 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Address address = new Address("city", "street", "10000");
-
-            Member member = new Member();
-            member.setUserName("member1");
-            member.setHomeAddress(address);
-            entityManager.persist(member);
-
-            // 불변에서 값을 바꾸러면 다시 만들어줘야 한다.
-            Address newAddress = new Address("NewCity", address.getStreet(), address.getZipcode());
-            member.setHomeAddress(newAddress);
-
 
             tx.commit();
         } catch (Exception e) {
