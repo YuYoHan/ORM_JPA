@@ -1,17 +1,13 @@
-package com.example.jpa.hellojpa;
+package com.example.jpa.JPQL;
 
 
-import com.example.jpa.domain.OrderEntity;
-import com.example.jpa.domain.OrderItemEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Slf4j
 public class JpaMain {
@@ -23,14 +19,12 @@ public class JpaMain {
         tx.begin();
 
         try {
-            List<Member> resultList = entityManager.createQuery(
-                            "select m from Member m where m.name like '%hello%'",
-                            Member.class)
-                    .getResultList();
+            Member member = new Member();
+            member = Member.builder()
+                    .userName("member1")
+                    .build();
 
-            for(Member member : resultList) {
-                System.out.println("member : " + member);
-            }
+            entityManager.persist(member);
 
             tx.commit();
         } catch (Exception e) {
