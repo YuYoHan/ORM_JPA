@@ -23,8 +23,12 @@ public class JpaMain {
 
             entityManager.persist(member);
 
-            TypedQuery<Member> query = entityManager.createQuery("select m from Member m", Member.class);
-            Query query2 = entityManager.createQuery("select m.userName, m.age from Member m", Member.class);
+            TypedQuery<Member> query =
+                    entityManager.createQuery("select m from Member m where m.userName = :userName", Member.class);
+            query.setParameter("userName", "member1");
+
+            Member singleResult = query.getSingleResult();
+            System.out.println(singleResult);
 
             tx.commit();
         } catch (Exception e) {
