@@ -34,7 +34,7 @@ public class JpaMain {
             List<Team> resultList = entityManager.createQuery(query, Team.class).getResultList();
 
             for (Team s : resultList) {
-                System.out.println("s : " + s);
+                log.info("s : " + s);
         }
 
             tx.commit();
