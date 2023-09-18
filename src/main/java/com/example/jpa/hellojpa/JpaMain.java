@@ -29,11 +29,15 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-            String query = "select m.team From Member m";
+            // N +1 문제를 해결하기 위해서는 join fetch를 사용한다.
+            // 연관된 데이터를 가지고 오려면 join을 해야하고
+            // fetch는 한번에 가지고 온다는 것이다.
+            String query = "select m From Member m join fetch m.team";
 
-            List<Team> resultList = entityManager.createQuery(query, Team.class).getResultList();
+            // 여기서 List에 담기는 값은 프록시가 아니라 엔티티의 값이다.
+            List<Member> resultList = entityManager.createQuery(query, Member.class).getResultList();
 
-            for (Team s : resultList) {
+            for (Member s : resultList) {
                 log.info("s : " + s);
         }
 
